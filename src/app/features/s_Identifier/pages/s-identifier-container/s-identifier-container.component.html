@@ -1,0 +1,42 @@
+<div class="s-identifier-container">
+  <div class="container">
+    <h2>Inscription</h2>
+
+    <form [formGroup]="inscriptionInfo">
+      <div class="form-group pt-3">
+        <div class="input-field">
+          <label for="user">Nom d'utilisateur :</label>
+          <span class="fa fa-user p-2"></span
+          ><input type="text" formControlName="username" />
+        </div>
+        <!-- <span
+          *ngIf="
+            inscriptionInfo.controls['username'].dirty &&
+            inscriptionInfo.hasError('required', 'username')
+          "
+          class="text-danger"
+          >*entrez le nom d'utilisateur</span
+        > -->
+        <div class="email">
+          <label>Email :</label>
+          <input type="email" formControlName="email" />
+        </div>
+        <span
+          class="text-danger"
+          *ngIf="inscriptionInfo.controls['username'].touched"
+          >*entrez votre Email</span
+        >
+        <div class="passw">
+          <label for="pass">Mot de passe :</label>
+          <input [type]="type" formControlName="password" />
+          <span (click)="hideShowPass()" class=" fa {{ eyeIcon }} "></span>
+        </div>
+
+        <label for="password">Confirmez le mot de passe:</label>
+        <input type="password" formControlName="passcomfirm" />
+
+        <button type="submit">Valider</button>
+      </div>
+    </form>
+  </div>
+</div>

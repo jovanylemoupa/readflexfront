@@ -1,0 +1,92 @@
+<header #header>
+  <div class="content header-container">
+    <a class="logo" routerLink="">
+      <i class="redclass"> READ</i> <i class="classbass">FLEX</i></a
+    >
+    <nav>
+      <ul>
+        <li>
+          <a
+            rel="canonical"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+            routerLink="home"
+          >
+            Accueil</a
+          >
+        </li>
+        <li>
+          <a
+            rel="canonical"
+            routerLinkActive="active-link"
+            routerLink="/Nos-programme"
+            >Nos Programme</a
+          >
+        </li>
+        <li>
+          <a
+            rel="canonical"
+            routerLinkActive="active-link"
+            routerLink="/Apropos"
+            >A propos</a
+          >
+        </li>
+        <li>
+          <a
+            rel="canonical"
+            routerLinkActive="active-link"
+            routerLink="/SeConnecter"
+          >
+            Se Connecter
+          </a>
+        </li>
+
+        <li>
+          <a
+            rel="canonical"
+            routerLinkActive="active-link"
+            routerLink="/sIdentifier"
+          >
+            S'identifier</a
+          >
+          <!--
+                    <div [ngClass]="onLive ? 'online':'offline'" class="live-sign"></div>
+-->
+        </li>
+      </ul>
+      <!-- <button (click)="menu.toggle($event)" class="get-involved">
+        S'impliquer <i class="pi pi-angle-down"></i>
+      </button> -->
+      <p-menu
+        #menu
+        [model]="items"
+        styleClass="get-involved-menu"
+        [popup]="true"
+      ></p-menu>
+    </nav>
+
+    <div
+      class="burger"
+      [ngClass]="displayMenu === true ? 'show-cross' : ''"
+      (click)="onBurgerMenu()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <p-dialog
+    [(visible)]="displayMenu"
+    position="right"
+    [draggable]="false"
+    [blockScroll]="true"
+    styleClass="nav-small-screen"
+    maskStyleClass="mask-nav-small-screen"
+  >
+    <app-nav-small-screen
+      (onNavigationOnSmallScreenEvent)="menuForSmallScreenHandler($event)"
+    >
+    </app-nav-small-screen>
+  </p-dialog>
+</header>

@@ -1,0 +1,16 @@
+<div class="hero-banner">
+  <p-carousel
+    [value]="heroCards"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+  >
+    <ng-template let-heroCard pTemplate="item">
+      <div class="hero-item">
+        <p>{{ heroCard.titre }}</p>
+        <p>{{ heroCard.description }}</p>
+        <img ngSrc="{{ heroCard.image }}" alt="{{ heroCard.titre }}" fill />
+      </div>
+    </ng-template>
+  </p-carousel>
+</div>
