@@ -16,6 +16,8 @@ import { Story } from '../../models/story';
 export class CardStoryComponent {
   @Input() story!: Story;
 
+  isFavorited: boolean = false;
+
   visible: boolean = false;
   position: string = 'center';
   colorHeart: string = 'red';
@@ -26,5 +28,8 @@ export class CardStoryComponent {
     this.visible = true;
     this.position = this.position;
   }
-  onClickHeart() {}
+
+  toggleFavorite() {
+    this.isFavorited = !this.isFavorited;
+  }
 }

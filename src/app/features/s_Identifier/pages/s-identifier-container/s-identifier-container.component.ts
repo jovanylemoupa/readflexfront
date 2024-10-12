@@ -1,77 +1,73 @@
-import { CommonModule, NgClass, NgIf } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { Component, NgModule, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputGroupModule } from 'primeng/inputgroup';
+import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
+
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { __values } from 'tslib';
+import { UserService } from '../../../../shared/services/user/user.service';
+import { User } from '../../../../shared/models/user';
 
 @Component({
   selector: 'app-s-identifier-container',
   standalone: true,
   imports: [
-    HttpClientModule,
-   ReactiveFormsModule,
-    CommonModule
-   
+    ReactiveFormsModule,
+    PasswordModule,
+    InputTextModule,
+    InputIconModule,
+    IconFieldModule,
+    InputGroupAddonModule,
+    InputGroupModule,
   ],
   templateUrl: './s-identifier-container.component.html',
-  styleUrl: './s-identifier-container.component.scss'
+  styleUrl: './s-identifier-container.component.scss',
 })
 export class SIdentifierContainerComponent implements OnInit {
-
   type: string = 'password';
   isText: boolean = false;
+  value!: string;
 
-  inscriptionInfo !: FormGroup;
+  inscriptionInfo!: FormGroup;
   isSaveButtonClicked = false;
-  eyeIcon:string = "fa-eye-slash"
-  constructor(private fb: FormBuilder){}
+  eyeIcon: string = 'fa-eye-slash';
+
+  constructor(private fb: FormBuilder, private userService: UserService) {}
 
   ngOnInit(): void {
-    this.getInitform
-  // this.inscriptionInfo = new FormGroup({
-  //     username: new FormGroup('',[Validators.required]) ,
-  //    email:new FormGroup('',[Validators.required]) ,
-  //     password: new FormGroup('',[Validators.required]) ,
-  //      passcomfirm: new FormGroup('',[Validators.required])
-  // });
-
-  }
-  hideShowPass(){
-    this.isText = !this.isText;
-    this.isText ? this.eyeIcon = 'fa-eye' : this.eyeIcon = 'fa-eye-slash'
-    this.isText ? this.type = 'text' : this.type = 'password'
+    this.initform();
   }
 
-  getInitform(): void{
-    this.inscriptionInfo= this.fb.group({
-      userName: ["",Validators.required],
-      email:["", Validators.required, Validators.email],
-      password: ["", Validators.required],
-      passcomfirm:["", Validators.required],
-    })
+  initform(): void {
+    this.inscriptionInfo = this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', Validators.required],
+      passcomfirm: ['', Validators.required],
+    });
   }
-  gettextsendinfoToConsol(){
-    // this.isSaveButtonClicked = true;
-    // if (this.inscriptionInfo.invalid === true) {
-    //   return;
-    // }
-  }
-  getPassword(){
-    return this.inscriptionInfo.value.userName;
-  }
-  onsubmiButton(){
-//     if(this.inscriptionInfo.valid && this.inscriptionInfo.value.password === this.inscriptionInfo.value.passcomfirm){
-// console.log("le formulaire recue avec sucess");
-//     } else{
-//       alert('le mot de passe ne correspond pas');
-//     }
-  }
-  onSubmit() {
-    if (this.inscriptionInfo.valid) {
-      console.log(this.inscriptionInfo.value);
+
+  onCreateUser() {
+    this.isSaveButtonClicked = true;
+    if (this.inscriptionInfo.invalid) {
+      console.log('invalide');
+      return;
     }
+    const userData: User = this.inscriptionInfo.getRawValue();
+    this.userService.createUser(userData);
+  }
 
-   
-
+  hideShowPass() {
+    this.isText = !this.isText;
+    this.isText ? (this.eyeIcon = 'fa-eye') : (this.eyeIcon = 'fa-eye-slash');
+    this.isText ? (this.type = 'text') : (this.type = 'password');
   }
 }

@@ -2,38 +2,63 @@
   <div class="container">
     <h2>Inscription</h2>
 
-    <form [formGroup]="inscriptionInfo">
+    <form [formGroup]="inscriptionInfo" (ngSubmit)="onCreateUser()">
       <div class="form-group pt-3">
         <div class="input-field">
-          <label for="user">Nom d'utilisateur :</label>
-          <span class="fa fa-user p-2"></span
-          ><input type="text" formControlName="username" />
+          <p-iconField iconPosition="left">
+            <p-inputIcon styleClass="pi pi-user" />
+            <input
+              type="text"
+              pInputText
+              placeholder="Nom d'utilisateur"
+              formControlName="username"
+            />
+          </p-iconField>
+          @if ( isSaveButtonClicked &&
+          inscriptionInfo.controls['username'].invalid) {
+          <small class="text-danger">*Nom d'utilisateur requis</small>
+          }
         </div>
-        <!-- <span
-          *ngIf="
-            inscriptionInfo.controls['username'].dirty &&
-            inscriptionInfo.hasError('required', 'username')
-          "
-          class="text-danger"
-          >*entrez le nom d'utilisateur</span
-        > -->
         <div class="email">
-          <label>Email :</label>
-          <input type="email" formControlName="email" />
+          <p-iconField iconPosition="left">
+            <p-inputIcon styleClass="pi pi-envelope" />
+            <input
+              type="email"
+              pInputText
+              placeholder="Email"
+              formControlName="email"
+            />
+          </p-iconField>
+          @if ( isSaveButtonClicked &&
+          inscriptionInfo.controls['email'].invalid) { @if
+          (inscriptionInfo.controls['email'].errors?.["required"]) {
+          <small class="text-danger">*L'email est requis</small>
+          } @if (inscriptionInfo.controls['email'].errors?.["email"]) {
+          <small class="text-danger">
+            *Le format de l'email ne correspond pas
+          </small>
+          } }
         </div>
-        <span
-          class="text-danger"
-          *ngIf="inscriptionInfo.controls['username'].touched"
-          >*entrez votre Email</span
-        >
         <div class="passw">
           <label for="pass">Mot de passe :</label>
-          <input [type]="type" formControlName="password" />
-          <span (click)="hideShowPass()" class=" fa {{ eyeIcon }} "></span>
+
+          <p-inputGroup>
+            <p-inputGroupAddon>
+              <i class="pi pi-lock"></i>
+            </p-inputGroupAddon>
+            <input
+              pInputText
+              class="ng-invalid ng-dirty"
+              formControlName="password"
+            />
+          </p-inputGroup>
+
+          <!-- <input [type]="type" formControlName="password" />
+          <span (click)="hideShowPass()" class=" fa {{ eyeIcon }} "></span> -->
         </div>
 
         <label for="password">Confirmez le mot de passe:</label>
-        <input type="password" formControlName="passcomfirm" />
+        <input type="type" pInputText formControlName="passcomfirm" />
 
         <button type="submit">Valider</button>
       </div>
