@@ -2,28 +2,28 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    path: 'c',
+    path: '',
     loadComponent: () =>
       import(
         './features/home/pages/home-container/home-container.component'
       ).then((m) => m.HomeContainerComponent),
   },
   {
-    path: 'SeConnecter',
+    path: 'se-connecter',
     loadComponent: () =>
       import(
         './features/se_connecter/pages/se-connecter-container/se-connecter-container.component'
       ).then((m) => m.SeConnecterContainerComponent),
   },
   {
-    path: 'sIdentifier',
+    path: 's-identifier',
     loadComponent: () =>
       import(
         './features/s_Identifier/pages/s-identifier-container/s-identifier-container.component'
       ).then((m) => m.SIdentifierContainerComponent),
   },
   {
-    path: 'Nos-programme',
+    path: 'nos-programme',
     loadComponent: () =>
       import(
         './features/nos-programmes/pages/programme-container/programme-container.component'
@@ -37,7 +37,7 @@ export const routes: Routes = [
       ).then((m) => m.FaqContainerComponent),
   },
   {
-    path: 'Apropos',
+    path: 'a-propos',
     loadComponent: () =>
       import(
         './features/Apropos/pages/apropos-container/apropos-container.component'
@@ -56,5 +56,12 @@ export const routes: Routes = [
       import(
         './features/admin/components/writeplace/writeplace.component'
       ).then((m) => m.WriteplaceComponent),
+  },
+  {
+    path: 'nous-contacter',
+    loadComponent: () =>
+      import(
+        './features/nous-contacter/pages/nouscontacter-container/nouscontacter-container.component'
+      ).then((m) => m.NouscontacterContainerComponent),
   },
 ];

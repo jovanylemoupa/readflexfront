@@ -208,6 +208,7 @@ header{
 
         .burger{
             display: none;
+            background-color: black;
         }
     }
 }
@@ -222,15 +223,19 @@ header{
         width: 100%;
         margin: 0 !important;
         padding-top: 6em;
+        background-color: black;
 
         .p-dialog-header{
             display: none;
+            background-color: black;
+
         }
     
         .p-dialog-content{
             height: 100%;
             border-radius: 0 !important;
             background-color: unset ;
+            background-color: black;
 
         }
     
@@ -238,6 +243,7 @@ header{
             width: 100%;
             overflow: hidden;
             height: 100%;
+            background-color: black;
         }
     }
 }

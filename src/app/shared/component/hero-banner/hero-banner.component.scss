@@ -20,6 +20,18 @@
                     .hero-item{
                         height: 100%;
                         position: relative;
+                        
+                        p{
+                            width: 400px;
+                            word-wrap: break-word;
+                            word-break: break-all;
+                            margin: 20px;
+                            padding: 10px;
+                            overflow: hidden;
+                            font-size: larger;
+                            color: red;
+
+           }
                         img{
                             object-fit: cover;
                             z-index: -1;
