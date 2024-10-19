@@ -1,3 +1,7 @@
+import { AdminDashboardComponent } from './features/admin/components/admin-dashboard/admin-dashboard.component';
+import { UserManagementComponent } from './features/admin/components/user-management/user-management.component';
+import { StoryManagementComponent } from './features/admin/components/story-management/story-management.component';
+import { CategoryManagementComponent } from './features/admin/components/category-management/category-management.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -57,4 +61,8 @@ export const routes: Routes = [
         './features/admin/components/writeplace/writeplace.component'
       ).then((m) => m.WriteplaceComponent),
   },
+  { path: 'admin-dashboard', component: AdminDashboardComponent },
+  { path: 'user-management', component: UserManagementComponent },
+  { path: 'story-management', component: StoryManagementComponent },
+  { path: 'category-management', component: CategoryManagementComponent },
 ];

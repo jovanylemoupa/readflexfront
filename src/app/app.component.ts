@@ -1,11 +1,9 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { FooterComponent } from "./core/component/footer/footer.component";
 import { HeaderComponent } from './core/component/header/header.component';
-import { ProgrammeContainerComponent } from './features/nos-programmes/pages/programme-container/programme-container.component';
-import { CardStoryComponent } from './shared/component/card-story/card-story.component';
-
-
+import { UserService } from './shared/services/user/user.service';
+import { User } from './shared/models/user';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +16,13 @@ import { CardStoryComponent } from './shared/component/card-story/card-story.com
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
-  title = 'readflex-frontend';
+
+
+export class AppComponent implements OnInit {
+
+  constructor(private userService: UserService) {}
+
+  ngOnInit(): void {
+  }
+
 }
