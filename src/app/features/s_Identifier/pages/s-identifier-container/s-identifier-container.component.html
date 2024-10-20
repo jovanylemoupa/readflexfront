@@ -52,16 +52,25 @@
               formControlName="password"
             />
           </p-inputGroup>
-
-          <!-- <input [type]="type" formControlName="password" />
-          <span (click)="hideShowPass()" class=" fa {{ eyeIcon }} "></span> -->
         </div>
+        @if ( isSaveButtonClicked &&
+        inscriptionInfo.controls['password'].invalid ) {
+        <small class="text-danger">*Le mot de passe est requis</small>
+        }
 
         <label for="password">Confirmez le mot de passe:</label>
         <input type="type" pInputText formControlName="passcomfirm" />
+        @if ( isSaveButtonClicked &&
+        inscriptionInfo.controls['passcomfirm'].invalid) { @if
+        (inscriptionInfo.controls['passcomfirm'].errors?.["required"]){
+        <small class="text-danger">*La comfirmation est requise</small>
+        } @if (inscriptionInfo.controls['passcomfirm'].errors?.["mustMatch"]) {
+        <small class="text-danger"> *Le mot de passe ne correspond pas! </small>
+        } }
 
         <button type="submit">Valider</button>
       </div>
     </form>
   </div>
+  <p-toast position="top-center" />
 </div>

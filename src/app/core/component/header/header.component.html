@@ -31,6 +31,7 @@
             >A propos</a
           >
         </li>
+        @if (!isConnected) {
         <li>
           <a
             rel="canonical"
@@ -49,14 +50,29 @@
           >
             S'identifier</a
           >
-          <!--
-                    <div [ngClass]="onLive ? 'online':'offline'" class="live-sign"></div>
--->
         </li>
+        } @else {
+        <li>
+          <a
+            rel="canonical"
+            routerLinkActive="active-link"
+            routerLink="/se-connecter"
+          >
+            Mon Compte
+          </a>
+        </li>
+        <li>
+          <a
+            rel="canonical"
+            routerLinkActive="active-link"
+            (click)="onLoginOut()"
+          >
+            Se Déconnecter
+          </a>
+        </li>
+        }
       </ul>
-      <!-- <button (click)="menu.toggle($event)" class="get-involved">
-        S'impliquer <i class="pi pi-angle-down"></i>
-      </button> -->
+
       <p-menu
         #menu
         [model]="items"

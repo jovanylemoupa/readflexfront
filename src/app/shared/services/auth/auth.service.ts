@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class AuthService {
   userBaseUrl = environment.baseUrl + '/users';
+  isUserLogged$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
-  createUser(userData: User): Observable<any> {
-    console.log(userData);
-    return this.http.post<any>(this.userBaseUrl + '/create', userData);
+  login(loginData: any): Observable<any> {
+    return this.http.post<any>(this.userBaseUrl + '/login', loginData);
   }
 }

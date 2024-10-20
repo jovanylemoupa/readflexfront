@@ -1,4 +1,5 @@
 import { Auteur } from './auteur';
+import { StoryCategories } from './story-categories.enum';
 
 export interface Story {
   id: Number;
@@ -7,4 +8,5 @@ export interface Story {
   auteur: Partial<Auteur>;
   description: string;
   contenuHistoire?: string;
+  categorie: StoryCategories;
 }

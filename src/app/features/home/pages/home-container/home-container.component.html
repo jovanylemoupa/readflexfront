@@ -27,5 +27,22 @@
         </div>
       </div>
     </section>
+    <section class="fantastique">
+      <h2>les histoire pour les Fantastique</h2>
+      @for (story of stories; track $index) { @if (story.categorie ===
+      "Fantastique") {
+      <app-card-story [story]="story"></app-card-story>
+      } }
+    </section>
+
+    <section class="legende">
+      <h2>Nos plus grands contes et legendes</h2>
+      <div class="legendestory">
+        @for (story of stories; track $index) { @if (story.categorie ===
+        "Contes-et-Légendes") {
+        <app-card-story [story]="story"></app-card-story>
+        } }
+      </div>
+    </section>
   </main>
 </div>
