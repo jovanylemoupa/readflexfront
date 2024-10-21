@@ -3,7 +3,7 @@
 
   <main>
     <section class="content">
-      <h3>Mes Films et Séries</h3>
+      <h3>Mes meilleurs films</h3>
       <div class="grid">
         <div class="card">
           <img src="/assets/img/vwioejmi.png" alt="Film 1" height="335" />
@@ -27,22 +27,29 @@
         </div>
       </div>
     </section>
-    <section class="fantastique">
-      <h2>les histoire pour les Fantastique</h2>
-      @for (story of stories; track $index) { @if (story.categorie ===
-      "Fantastique") {
-      <app-card-story [story]="story"></app-card-story>
-      } }
-    </section>
+    <!-- @for (category of categories; track category.id) {
+      @if(category.storys) {
+        <section class="{{category.name}}">
+          <h2>Le meilleure de la catégorie {{category.name}}</h2>
+          @for (story of category.storys; track $index) { @if (story) {
+            <app-card-story [story]="story"></app-card-story>
+          }
 
-    <section class="legende">
+          }
+        </section>
+      }
+
+    } -->
+
+
+    <!-- <section class="legende">
       <h2>Nos plus grands contes et legendes</h2>
       <div class="legendestory">
-        @for (story of stories; track $index) { @if (story.categorie ===
+        @for (story of stories; track $index) { @if (story.categorie.name ===
         "Contes-et-Légendes") {
         <app-card-story [story]="story"></app-card-story>
         } }
       </div>
-    </section>
+    </section> -->
   </main>
 </div>

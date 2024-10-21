@@ -2,12 +2,12 @@
   <ul>
     <li class="card-president">
       <div class="image-wrapper">
-        <img ngSrc=" {{ story.imagestory }} " alt="" width="500" height="100" />
+        <img ngSrc="/assets/img/{{ story.storyImage }} " alt="" width="500" height="100" />
       </div>
       <div class="texts-wrapper">
-        <h4>{{ story.auteur }}</h4>
+        <h4>{{ story.storyName }}</h4>
 
-        <p>{{ story.description }}</p>
+        <p>{{ story.storyDescription }}</p>
         <div class="reactiveblock">
           <span class="haeartclass">
             <i
@@ -23,7 +23,7 @@
           <div class="btn-show">
             <p-button (onClick)="showDialog()" label="suivre l'histoire" />
             <p-dialog
-              header="Header"
+              header="{{story.storyName}}"
               [modal]="true"
               [(visible)]="visible"
               [style]="{ width: '50rem' }"
@@ -45,8 +45,8 @@
               </div>
               > >
               <!-- <img [ngSrc]="/assets/img/acc1.png" alt="essaie" fill="" /> -->
-              <p class="mb-5">Lorem ipsum dolor sit amet...</p>
-              <p class="mb-5">
+              <p class="mb-5">{{ story.storyContent }}</p>
+              <!-- <p class="mb-5">
                 "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium...
               </p>
@@ -60,7 +60,7 @@
                 "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                 accusantium...
               </p>
-              <p>At vero eos et accusamus et iusto odio dignissimos...</p>
+              <p>At vero eos et accusamus et iusto odio dignissimos...</p> -->
               <!-- <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
               officia fuga atque perspiciatis sunt necessitatibus beatae. Est

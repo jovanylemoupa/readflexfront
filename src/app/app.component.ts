@@ -4,12 +4,20 @@ import { FooterComponent } from './core/component/footer/footer.component';
 import { HeaderComponent } from './core/component/header/header.component';
 import { ProgrammeContainerComponent } from './features/nos-programmes/pages/programme-container/programme-container.component';
 import { CardStoryComponent } from './shared/component/card-story/card-story.component';
-import { AuthService } from './shared/services/auth/auth.service';
+import { StoryService } from './shared/services/story/story.service';
+import { HttpClientModule } from '@angular/common/http';import { AuthService } from './shared/services/auth/auth.service';
+import { CategoryService } from './shared/services/category/category.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent],
+  imports: [
+    RouterOutlet,
+    HeaderComponent,
+    FooterComponent,
+    HttpClientModule
+    ],
+  providers: [StoryService, CategoryService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

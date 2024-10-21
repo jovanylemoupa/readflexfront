@@ -1,12 +1,10 @@
-import { Auteur } from './auteur';
-import { StoryCategories } from './story-categories.enum';
+import { Categorie } from './categorie';
 
 export interface Story {
   id: Number;
-  titre: string;
-  imagestory: string;
-  auteur: Partial<Auteur>;
-  description: string;
-  contenuHistoire?: string;
-  categorie: StoryCategories;
+  storyName: string;
+  storyImage: string;
+  categorie: Partial<Categorie>;
+  storyDescription: string;
+  storyContent?: string;
 }

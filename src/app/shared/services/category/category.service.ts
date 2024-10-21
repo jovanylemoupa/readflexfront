@@ -1,6 +1,5 @@
+import { Categorie } from './../../models/categorie';
 import { Injectable } from '@angular/core';
-import { Story } from '../../models/story';
-import { Auteur } from '../../models/auteur';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environment/environment';
@@ -8,12 +7,13 @@ import { environment } from '../../../../environment/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class StoryService {
+export class CategoryService {
   constructor(private http: HttpClient) {}
 
-  private baseUrl = `${environment.api}/story`;
+  private baseUrl = `${environment.api}/categorie`;
 
-  getAllStories(): Observable<Story[]> {
-    return this.http.get<Story[]>(`${this.baseUrl}/get/all`);
+  getAllCategories(): Observable<Categorie[]> {
+
+    return this.http.get<Categorie[]>(`${this.baseUrl}/get/all`);
   }
 }

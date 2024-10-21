@@ -18,6 +18,9 @@ export class ReadContainerComponent implements OnInit {
     this.getStories();
   }
   getStories(): void {
-    this.stories = this.storyservice.getStoriesOverview();
+    this.storyservice.getAllStories().subscribe((stories) => {
+      this.stories = stories;
+      console.log(this.stories);
+    })
   }
 }

@@ -15,7 +15,7 @@
                     justify-content: center;
                     font-size: 40px;
                     margin: 40px;
-                    
+
                 }
 
                 .grid {
@@ -28,15 +28,19 @@
                         border-radius: 5px;
                         padding: 10px;
                         text-align: center;
-    
+
                         img {
                             width: 100%;
                             border-radius: 5px;
                         }
+
+                        h4{
+                          color: #fff;
+                        }
                     }
                 }
 
-               
+
             }
             .fantastique{
                 h2{
@@ -44,7 +48,7 @@
                     color: white;
                     margin: 30px;
                 }
-               
+
             }
             .legende{
                 h2{
@@ -61,24 +65,24 @@
             // .logo h1 {
             //     margin: 0;
             // }
-            
+
             // nav ul {
             //     list-style: none;
             //     display: flex;
             //     gap: 20px;
             // }
-            
+
             // nav a {
             //     color: white;
             //     text-decoration: none;
             // }
-            
-            
-            
+
+
+
             // .hero h2 {
             //     font-size: 2.5em;
             // }
-            
+
             // .hero button {
             //     padding: 10px 20px;
             //     font-size: 1em;
@@ -87,21 +91,21 @@
             //     color: white;
             //     cursor: pointer;
             // }
-            
+
             // .content {
             //     padding: 20px;
-        
+
             // }
-            
-            
-            
-            
-            
-           
-            
-            
-            
+
+
+
+
+
+
+
+
+
         }
-    
-    
+
+
 }
