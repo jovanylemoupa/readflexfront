@@ -111,12 +111,15 @@ export class UserManagementComponent implements OnInit {
   }
 
   deleteUser(user: User): void {
-    this.userService.deleteUser(user.id).subscribe(() => {
-      this.loadUsers(); // Recharge la liste après la suppression
-    }, error => {
-      console.error('Erreur lors de la suppression de l’utilisateur:', error);
-    });
+    if (confirm(`Êtes-vous sûr de vouloir supprimer l'utilisateur ${user.username} ?`)) {
+      this.userService.deleteUser(user.id).subscribe(() => {
+        this.loadUsers(); // Recharge la liste après la suppression
+      }, error => {
+        console.error('Erreur lors de la suppression de l’utilisateur:', error);
+      });
+    }
   }
+
 
   changeStatus(user: User): void {
     this.userService.changeUserStatus(user.id).subscribe(() => {
