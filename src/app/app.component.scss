@@ -1,0 +1,203 @@
+
+p{
+    color: rgb(224, 210, 20);
+}
+$primary-color: #aa9594;
+$secondary-color: #1a8476;
+$text-color: white;
+$background-color: #eea0a0;
+$btn-hover-color: #b57f79;
+$card-hover-color: rgba(117, 69, 65, 0.9);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: 'Montserrat', sans-serif;
+  height: 100%;
+  background-color: $background-color;
+  color: $secondary-color;
+  scroll-behavior: smooth;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  background: url('https://example.com/hero-background.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: $text-color;
+
+  .header h1 {
+    font-size: 4rem;
+    margin-bottom: 10px;
+    animation: slideDown 1.5s ease;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    animation: slideDown 2s ease;
+  }
+
+  .btn-discover {
+    background-color: $primary-color;
+    color: $text-color;
+    padding: 15px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    animation: slideUp 2.5s ease;
+  }
+
+  .btn-discover:hover {
+    background-color: $btn-hover-color;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stories-section {
+  padding: 50px 0;
+  background-color: $background-color;
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: $secondary-color;
+    animation: fadeIn 2s ease;
+  }
+
+  .stories-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    padding: 0 30px;
+    justify-items: center;
+  }
+
+  .story-card {
+    background-color: $text-color;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: popUp 1.5s ease forwards;
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container {
+      height: 200px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover img {
+        transform: scale(1.1);
+      }
+    }
+
+    .story-info {
+      padding: 20px;
+      color: $secondary-color;
+
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        transition: color 0.3s ease;
+      }
+
+      p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+      }
+
+      .btn-read {
+        background-color: $primary-color;
+        color: $text-color;
+        padding: 10px 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn-read:hover {
+        background-color: $btn-hover-color;
+      }
+    }
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: $secondary-color;
+  color: $text-color;
+
+  p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+}

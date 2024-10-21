@@ -1,0 +1,33 @@
+<p>features works!</p>
+<div class="container">
+    <!-- En-tête commune -->
+    <header class="header">
+      <h1>Bienvenue dans la Bibliothèque d'Histoires</h1>
+      <p class="subtitle">Sélectionnez une histoire pour la lire</p>
+    </header>
+  
+    <main>
+      <!-- Liste des histoires -->
+      <section *ngIf="!selectedStory" class="story-list">
+        <h2>Liste des Histoires</h2>
+        <ul>
+          <li *ngFor="let story of stories">
+            <a (click)="selectStory(story)" class="story-link">{{ story.title }}</a>
+          </li>
+        </ul>
+      </section>
+  
+      <!-- Détails d'une histoire -->
+      <section *ngIf="selectedStory">
+        <h2>{{ selectedStory.title }}</h2>
+        <p>{{ selectedStory.content }}</p>
+        <a (click)="deselectStory()" class="btn">Retour à la liste des histoires</a>
+      </section>
+    </main>
+  
+    <!-- Pied de page commun -->
+    <footer class="footer">
+      <p>&copy; 2024 Bibliothèque d'Histoires - Tous droits réservés</p>
+    </footer>
+  </div>
+  
