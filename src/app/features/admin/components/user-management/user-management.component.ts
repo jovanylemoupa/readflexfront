@@ -17,7 +17,11 @@ export class UserManagementComponent implements OnInit {
   users: User[] = [];
   filteredUsers: User[] = [];
   newUser: User = { id:0, username: '', email: '', password: '', admin: false };
+  selectedUser: User | null = null;  // Pour stocker l'utilisateur à modifier
   showAddUserForm: boolean = false;
+  showListUserForm: boolean = true;
+  showEditUserForm: boolean = false; // Pour afficher le formulaire de modification
+  isSubmitted: boolean = false; // Pour gérer l'état de soumission
 
   constructor(private userService: UserService) {}
 
@@ -46,69 +50,59 @@ export class UserManagementComponent implements OnInit {
       this.filteredUsers = this.users.filter(user => !user.admin);
     }
   }
-
-  openAddUserModal(): void {
-    /*
-    this.newUser = { id: 0, username: '', email: '', password: '', admin: false };
-    if(typeof document !== 'undefined'){
-
-    const modalElement = document.getElementById('addUserModal');
-    if (modalElement) {
-      const modal = new bootstrap.Modal(modalElement);
-      modal.show();
-    } else {
-      console.error('Le modal avec l\'ID "addUserModal" n\'a pas été trouvé.');
-    }
-  } */
+  // Ouvrir le formulaire de modification avec les données de l'utilisateur
+  openEditUserForm(user: User): void {
+    this.selectedUser = { ...user };  // Faire une copie de l'utilisateur
+      this.showEditUserForm = true;
+      this.showListUserForm = false;
   }
 
-  /*submitAddUser(): void {
-    this.userService.createUser(this.newUser).subscribe(
-      (user) => {
-        this.loadUsers(); // Recharge la liste après ajout
-
-        if (typeof document !== 'undefined') {
-        const modalElement = document.getElementById('addUserModal');
-        if (modalElement) {
-          const modal = bootstrap.Modal.getInstance(modalElement);
-          if (modal) {
-            modal.hide();
-          } else {
-            console.error('Aucune instance de modal trouvée.');
-          }
-        } else {
-          console.error('Le modal avec l\'ID "addUserModal" n\'a pas été trouvé.');
+  // Soumettre les modifications
+  submitEditUser(): void {
+    if (this.selectedUser) {
+      this.userService.updateUser(this.selectedUser).subscribe(
+        () => {
+          this.loadUsers();  // Recharger la liste après la mise à jour
+          this.closeEditUserForm();
+        },
+        (error) => {
+          console.error('Erreur lors de la mise à jour de l\'utilisateur:', error);
         }
-      }
-      },
-      (error) => {
-        console.error('Erreur lors de l\'ajout de l\'utilisateur:', error);
-      }
-    );
-  }*/
+      );
+    }
+  }
+
+  // Fermer le formulaire de modification
+  closeEditUserForm(): void {
+    this.selectedUser = null;
+    this.showEditUserForm = false;
+    this.showListUserForm= true;
+  }
 
  openAddUserForm(): void {
     this.showAddUserForm = true;
+    this.showListUserForm = false;
   }
 
   submitAddUser(): void {
+    this.isSubmitted = true;
     this.userService.createUser(this.newUser).subscribe(
       (user) => {
         this.loadUsers(); // Recharge la liste après ajout
         this.newUser = { id: 0, username: '', email: '', password: '', admin: false }; // Réinitialiser le formulaire
-        this.showAddUserForm = false;
-        //this.hideAddUserForm = true;
+        this.closeAddUserForm()
+        this.isSubmitted = false;
       },
       (error) => {
         console.error('Erreur lors de l\'ajout de l\'utilisateur:', error);
       }
     );
   }
-
-  editUser(user: User): void {
-    // Logique pour modifier un utilisateur
-    console.log('Modifier utilisateur', user);
+  closeAddUserForm(): void {
+    this.showAddUserForm = false;
+    this.showListUserForm = true;
   }
+
 
   deleteUser(user: User): void {
     if (confirm(`Êtes-vous sûr de vouloir supprimer l'utilisateur ${user.username} ?`)) {
@@ -127,11 +121,6 @@ export class UserManagementComponent implements OnInit {
     }, error => {
       console.error('Erreur lors du changement de statut de l’utilisateur:', error);
     });
-  }
-
-  viewUserDetails(user: User): void {
-    console.log('Voir les détails de l’utilisateur', user);
-    // Tu peux aussi ouvrir un modal ou rediriger vers une autre page ici
   }
 }
 
